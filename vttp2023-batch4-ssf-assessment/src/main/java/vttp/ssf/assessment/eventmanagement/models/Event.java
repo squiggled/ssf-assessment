@@ -1,6 +1,5 @@
 package vttp.ssf.assessment.eventmanagement.models;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,6 +50,8 @@ public class Event {
         Date date = new Date(eventDate);
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         return sdf.format(date);
+        //org.springframework.data.redis.serializer.SerializationException: Could not read JSON:Cannot deserialize value of type `java.lang.Long` from String "18-12-2023": not a valid `java.lang.Long` value
+//  at [Source: (byte[])"{"@class":"vttp.ssf.assessment.eventmanagement.models.Event","eventId":2,"eventName":"Round Singapore Cycling","eventSize":5,"eventDate":"18-12-2023","participants":0}"; line: 1, column: 138] (through reference chain: vttp.ssf.assessment.eventmanagement.models.Event["eventDate"]) 
     }
 
     public void setEventDate(Long eventDate) {

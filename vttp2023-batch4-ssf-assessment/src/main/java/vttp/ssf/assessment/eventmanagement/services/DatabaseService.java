@@ -3,7 +3,10 @@ package vttp.ssf.assessment.eventmanagement.services;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +44,6 @@ public class DatabaseService {
             event.setEventId(eventObj.getInt("eventId"));
             event.setEventName(eventObj.getString("eventName"));
             event.setEventSize(eventObj.getInt("eventSize"));
-            // event.setEventDate(eventObj.getInt("eventDate"));
             JsonNumber number = eventObj.getJsonNumber("eventDate");
             Long eventDate = number.longValue();
             event.setEventDate(eventDate);
@@ -76,6 +78,15 @@ public class DatabaseService {
             indexInRedis = 3;
         } 
         Event eventFound = redisRepo.getEvent(indexInRedis);
+        // SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
+        // try {
+        //     Date date = sdf.parse(eventFound.getEventDate());
+        //     long millis = date.getTime();
+        //     eventFound.setEventDate(millis);
+        // } catch (ParseException e) {
+        //     eventFound.setEventDate(0L);
+        // }
         return eventFound;
     }
    

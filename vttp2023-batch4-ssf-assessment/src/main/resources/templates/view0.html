@@ -22,7 +22,7 @@
             <td data-th-text="${event.eventDate}"> </td>
             <td>
                 <!-- each button will have its own form -->
-                <form method="get" th:action="@{/events/register/{eventId}(eventId=*{eventId})}"> 
+                <form method="get" th:action="@{/events/register/{eventId}(eventId=${event.eventId})}"> 
                     
                   <!-- Hidden field to hold the item identifier -->
                   <input type="hidden" name="eventId" th:value="${event.eventId}" />

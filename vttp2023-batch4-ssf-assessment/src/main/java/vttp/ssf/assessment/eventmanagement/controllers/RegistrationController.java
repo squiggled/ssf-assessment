@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import vttp.ssf.assessment.eventmanagement.models.Event;
+import vttp.ssf.assessment.eventmanagement.models.Registration;
 import vttp.ssf.assessment.eventmanagement.services.DatabaseService;
 
 @Controller
@@ -14,7 +15,7 @@ public class RegistrationController {
 
     @Autowired
     DatabaseService databaseService;
-    
+
     // TODO: Task 6
     @GetMapping("/events/register/{eventId}")
     public String loadRegister(@PathVariable String eventId, Model model) {
@@ -22,6 +23,7 @@ public class RegistrationController {
         Integer eventIdInt = Integer.parseInt(eventId);
         // find the event
         Event foundEvent = databaseService.getRegisteredId(eventIdInt);
+        model.addAttribute("registration",new Registration());
         model.addAttribute("event", foundEvent);
         return "eventregister";
     }
