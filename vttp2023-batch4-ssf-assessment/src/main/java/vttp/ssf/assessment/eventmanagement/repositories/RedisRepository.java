@@ -39,7 +39,4 @@ public class RedisRepository {
 		return foundEvent;
 	}
 
-	// public void getRegisteredId(Integer indexInRedis) {
-
-	// }
 }
