@@ -61,13 +61,8 @@ public class RegistrationController {
 
         //server side rendering - AGE CHECK
         Date userBirthday = registration.getBirthday();
-        // System.out.println("userbirthday " + userBirthday);
         String year = userBirthday.toString().substring(24);
-        // System.out.println("year: " + year);
         int yearNow = Year.now().getValue();
-
-        //server side rendering - QUOTA CHECK
-        Boolean canRegister = databaseService.checkQuota(savedEvent.getEventId(), registration.getTickets());
 
         if ((yearNow - Integer.parseInt(year) <21)) {
             String message = "You are below 21 years old";
@@ -75,6 +70,9 @@ public class RegistrationController {
             model.addAttribute("errMessage", message);
             return "errorregistration";
         }
+        
+         //server side rendering - QUOTA CHECK
+        Boolean canRegister = databaseService.checkQuota(savedEvent.getEventId(), registration.getTickets());
         if (!canRegister){
             String message = "Your request for tickets exceeded the event size";
             session.setAttribute("event", savedEvent);

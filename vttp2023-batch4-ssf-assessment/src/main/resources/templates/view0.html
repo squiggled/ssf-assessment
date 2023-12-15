@@ -19,20 +19,11 @@
             <td data-th-text="${event.eventId}"></td>
             <td data-th-text="${event.eventName}"> </td>
             <td data-th-text="${event.eventSize}"> </td>
-            <td th:text="${#dates.format(new java.util.Date(event.eventDate))}"></td>
-
-            <!-- <td data-th-text="${event.eventDate}"> </td> -->
-            <td><a href="/events/listing/">Register</a></td>
+            <td th:text="${#dates.format(new java.util.Date(event.eventDate), 'dd-MM-yyyy')}"></td>
             <td>
-                <!-- each button will have its own form -->
-                <form method="get" th:action="@{/events/register/{eventId}(eventId=${event.eventId})}"> 
-                    
-                  <!-- Hidden field to hold the item identifier -->
-                  <input type="hidden" name="eventId" th:value="${event.eventId}" />
-                  
-                  <button type="submit">Register</button>
-                </form>
-              </td>
+                <a th:href="@{/events/register/{eventId}(eventId=${event.eventId})}">Register</a>
+            </td>
+           
         </tr>
     </table>
 </body>

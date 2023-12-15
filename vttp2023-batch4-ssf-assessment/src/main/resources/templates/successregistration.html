@@ -10,7 +10,7 @@
         <h1>Sucess!!</h1>
         <h1>You have successfully registered for the event:</h1>
         <h2 th:text="*{eventName}"></h2>
-        <h2 th:text="*{eventDate}"></h2>
+        <h2 th:text="${#dates.format(new java.util.Date(event.eventDate), 'dd-MM-yyyy')}"></h2>
     </div>
     
 
