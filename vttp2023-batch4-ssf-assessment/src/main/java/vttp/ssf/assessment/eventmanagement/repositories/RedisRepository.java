@@ -1,5 +1,7 @@
 package vttp.ssf.assessment.eventmanagement.repositories;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -30,9 +32,17 @@ public class RedisRepository {
 
 	// TODO: Task 4
 	public Event getEvent(Integer index){
-		Object eventObject = template.opsForList().index("events", index);
-		Event foundEvent = (Event) eventObject;
-		return foundEvent;
+		System.out.println("we got before finding");
+		Optional<Object> eventObject = (Optional<Object>) template.opsForList().index("events", index);
+		if (eventObject.isPresent()){
+			System.out.println("we got before casting");
+			Event foundEvent = (Event) eventObject.get();
+			System.out.println("we got after casting");
+			return foundEvent; 
+		} else {
+			return null;
+		}
+		
 	}
 
 }

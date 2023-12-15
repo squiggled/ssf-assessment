@@ -77,7 +77,9 @@ public class DatabaseService {
         } else if (eventId == 1){
             indexInRedis = 3;
         } 
+        System.out.println("we got here");
         Event eventFound = redisRepo.getEvent(indexInRedis);
+        System.out.println("we got AFTER repo call");
         // SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
         // try {

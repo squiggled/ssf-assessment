@@ -38,6 +38,7 @@ public class Registration {
     public Registration() {
     }
 
+
     public Registration(@NotEmpty(message = "Please enter a name") @Size(min = 5, max = 25) String name,
             @Past(message = "Birth date must be a past date") Date birthday,
             @NotEmpty(message = "Please enter an email") @Email(message = "Please enter a valid email") @Size(max = 50) String email,
@@ -49,6 +50,8 @@ public class Registration {
         this.phone = phone;
         this.tickets = tickets;
     }
+
+
 
     public String getName() {
         return name;

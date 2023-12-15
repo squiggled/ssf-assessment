@@ -23,10 +23,13 @@ public class RegistrationController {
         Integer eventIdInt = Integer.parseInt(eventId);
         // find the event
         Event foundEvent = databaseService.getRegisteredId(eventIdInt);
+        System.out.println("found event: " + foundEvent);
         model.addAttribute("registration",new Registration());
         model.addAttribute("event", foundEvent);
         return "eventregister";
     }
 
     // TODO: Task 7
+    // @PostMapping("/events/register/{eventId}")
+    // public String processRegistration(@Valid @ModelAttribute Registration registration, BindingResult result, @Mo)
 }
