@@ -27,17 +27,17 @@ public class Registration {
     @Size(max=50)
     private String email;
 
-    @Pattern(regexp = "[8-9]{8,}",message="Invalid phone number")
+    @Pattern(regexp = "(8|9)[0-9]{7}",message="Invalid phone number")
     private String phone;
 
-    @Min(value=1)
-    @Max(value=3)
+    @Min(value=1, message="Minimum 1 ticket")
+    @Max(value=3, message="Maximum 3 tickets")
     private Integer tickets;
 
     
     public Registration() {
     }
-
+ 
 
     public Registration(@NotEmpty(message = "Please enter a name") @Size(min = 5, max = 25) String name,
             @Past(message = "Birth date must be a past date") Date birthday,

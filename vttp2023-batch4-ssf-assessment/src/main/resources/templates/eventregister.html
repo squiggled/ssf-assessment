@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register event</title>
+</head>
+<body>
+    <h1>Register event</h1>
+    <h2>You have chosen to register for the following event:</h2>
+    <div th:object="${event}">
+        <h2 th:text="*{eventName}"></h2>
+        <td th:text="${#dates.format(new java.util.Date(event.eventDate))}"></td>
+    </div>
+
+    <form method="post" th:object="${registration}" th:action="@{/registration/register}">
+        <table>
+          <tr>
+            <td>
+              <label for="name" > Name </label>
+              <input name="name" th:field="*{name}" type="text">
+              <span data-th-if="${#fields.hasErrors('name')}" data-th-errors="*{name}"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="birthday" > Birthday </label>
+              <input name="birthday" th:field="*{birthday}" type="date">
+              <span data-th-if="${#fields.hasErrors('birthday')}" data-th-errors="*{birthday}"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="email"> Email </label>
+              <input name="email" th:field="*{email}" type="text">
+              <span data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="phone" > Mobile no. </label>
+              <input name="phone" th:field="*{phone}" type="text">
+              <span data-th-if="${#fields.hasErrors('phone')}" data-th-errors="*{phone}"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="gender" > Gender </label>
+              <input name="gender"  type="text">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="tickets" > Number of Tickets </label>
+              <input name="tickets" th:field="*{tickets}" type="number">
+              <span data-th-if="${#fields.hasErrors('tickets')}" data-th-errors="*{tickets}"></span>
+            </td>
+          </tr>
+            <td>
+              <button type="submit" >Register</button>
+            </td>
+          </tr>
+        
+        </table>
+      
+    </form>
+</body>
+</html>

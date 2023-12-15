@@ -62,7 +62,8 @@ public class DatabaseService {
     }
     
     public List<Event> getAllEvents(){
-        return eventListing;
+        List<Event> allEvents = redisRepo.getAllEvents();
+        return allEvents;
     }
 
 
@@ -77,19 +78,22 @@ public class DatabaseService {
         } else if (eventId == 1){
             indexInRedis = 3;
         } 
-        System.out.println("we got here");
         Event eventFound = redisRepo.getEvent(indexInRedis);
-        System.out.println("we got AFTER repo call");
-        // SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
-        // try {
-        //     Date date = sdf.parse(eventFound.getEventDate());
-        //     long millis = date.getTime();
-        //     eventFound.setEventDate(millis);
-        // } catch (ParseException e) {
-        //     eventFound.setEventDate(0L);
-        // }
+       
         return eventFound;
+    }
+
+    public Boolean checkQuota(Integer eventId, Integer participants){
+        Event event = getRegisteredId(eventId);
+        Integer eventSize = event.getEventSize();
+        if (participants > eventSize){
+            return false;
+        } else {
+            event.setEventSize(eventSize-participants);
+            redisRepo.updateParticipantCount(event);
+            return true;
+        }
+
     }
    
 
