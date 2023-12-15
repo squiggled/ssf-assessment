@@ -37,11 +37,7 @@ public class Event {
     }
 
     public Long getEventDate() throws ParseException {
-        // Date date = new Date(eventDate);
-        // SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        // return sdf.format(date);
         return eventDate;
-       
     }
 
     public void setEventDate(Long eventDate) {
