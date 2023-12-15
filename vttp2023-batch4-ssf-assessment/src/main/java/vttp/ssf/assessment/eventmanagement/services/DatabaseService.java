@@ -40,9 +40,9 @@ public class DatabaseService {
             event.setEventId(eventObj.getInt("eventId"));
             event.setEventName(eventObj.getString("eventName"));
             event.setEventSize(eventObj.getInt("eventSize"));
-            event.setEventDate(eventObj.getInt("eventDate"));
-            // Integer eventDate = eventObj.getInt("eventDate");
-            // event.setEventDate(Long.valueOf(eventDate.longValue()));
+            // event.setEventDate(eventObj.getInt("eventDate"));
+            Integer eventDate = eventObj.getInt("eventDate");
+            event.setEventDate(Long.valueOf(eventDate.longValue()));
             event.setParticipants(eventObj.getInt("participants"));
             System.out.println(event);
             eventListing.add(event);
