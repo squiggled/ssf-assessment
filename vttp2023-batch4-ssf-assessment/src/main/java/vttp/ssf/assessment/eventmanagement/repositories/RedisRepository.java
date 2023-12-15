@@ -1,5 +1,7 @@
 package vttp.ssf.assessment.eventmanagement.repositories;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +20,26 @@ public class RedisRepository {
 
 	// TODO: Task 2
 	public void saveToRedis(Event event) {
-		template.opsForHash().put("events", event.getEventId(), event);
+		Long size = template.opsForList().size("events");
+		if (size<4){
+			template.opsForList().leftPush("events", event);
+		}
 	}
 
 	// TODO: Task 3
 	public Long getNumberOfEvents(){
-		Long mapSize = template.opsForHash().size("events");
-		return mapSize;
+		Long eventNo = template.opsForList().size("events");
+		return eventNo;
 	}
 
 	// TODO: Task 4
 	public Event getEvent(Integer index){
-		Optional opt = Optional.ofNullable(template.opsForHash().get("events", index));
-		if (opt.isPresent()){
-			Event foundEvent = (Event) opt.get();
-			return foundEvent;
-		} else {
-			return null;
-		}
+		Object eventObject = template.opsForList().index("events", index);
+		Event foundEvent = (Event) eventObject;
+		return foundEvent;
 	}
+
+	// public void getRegisteredId(Integer indexInRedis) {
+
+	// }
 }

@@ -47,18 +47,10 @@ public class Event {
         this.eventSize = eventSize;
     }
 
-    public Date getEventDate() throws ParseException {
-        
-        String dateString = eventDate.toString();
-        long dateLong = Long.parseLong(dateString);
-
-        Date date = new Date(dateLong);
+    public String getEventDate() throws ParseException {
+        Date date = new Date(eventDate);
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-       
-        Date dt = sdf.parse(date.toString()); 
-        //Unparseable date: "Fri Dec 12 19:03:03 SGT 1969" (through reference chain: vttp.ssf.assessment.eventmanagement.models.Event["eventDate"])
-        System.out.println(dt);
-        return dt;
+        return sdf.format(date);
     }
 
     public void setEventDate(Long eventDate) {
