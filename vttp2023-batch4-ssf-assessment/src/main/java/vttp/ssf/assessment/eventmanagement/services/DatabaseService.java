@@ -3,10 +3,7 @@ package vttp.ssf.assessment.eventmanagement.services;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +92,4 @@ public class DatabaseService {
         }
 
     }
-   
-
 }

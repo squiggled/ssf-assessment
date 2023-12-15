@@ -1,8 +1,6 @@
 package vttp.ssf.assessment.eventmanagement.models;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Event {
     private Integer eventId;
@@ -13,14 +11,6 @@ public class Event {
 
     public Event() {
     }
-
-    // public Event(Integer eventId, String eventName, Integer eventSize, Long eventDate, Integer participants) {
-    //     this.eventId = eventId;
-    //     this.eventName = eventName;
-    //     this.eventSize = eventSize;
-    //     this.eventDate = eventDate;
-    //     this.participants = participants;
-    // }
 
     public Integer getEventId() {
         return eventId;

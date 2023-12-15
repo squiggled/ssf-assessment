@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -70,7 +69,7 @@ public class RegistrationController {
             model.addAttribute("errMessage", message);
             return "errorregistration";
         }
-        
+
          //server side rendering - QUOTA CHECK
         Boolean canRegister = databaseService.checkQuota(savedEvent.getEventId(), registration.getTickets());
         if (!canRegister){
